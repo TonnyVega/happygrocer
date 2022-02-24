@@ -1,0 +1,85 @@
+{% extends 'base.html'%}
+{% block title %}sales{% endblock %}
+{% block content %}
+
+<style>
+    body {
+        padding: 0;
+        margin:0;
+        font-family:Verdana, Geneva, Tahoma, sans-serif;
+    }
+
+    table{
+        position:center;
+        left: 50%;
+        top:50%;
+        transform: translate (-50%,-50%);
+        border-collapse: collapse;
+        width:800px;
+        height:200px;
+        border: 1px solid #bdc3c7;
+        box-shadow: 2px 2px 12px rgba(0,0,0,0.2),-1px -1px 8px rgba(0,0,0,0.2);
+    }
+    tr{
+        transition: all .2s ease-in;
+        cursor: pointer;
+    }
+
+    th,td{
+        padding: 12px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+    #header{
+        background-color: #16a085;
+        color: #fff;
+    }
+    h1{
+    font-weight: 600;
+    text-align: center;
+    background-color: #16a085;
+    color:#fff;
+    padding: 10px 0px;
+
+    }
+    tr:hover{
+        background-color: #f5f5f5;
+        transform: scale(1.02);
+        box-shadow: 2px 2px 12px rgba(0,0,0,0.2),-1px -1px 8px rgba(0,0,0,0.2);
+    }
+    @media only screen and (max-width: 768px){
+        table{
+            width: 90%;
+        }
+    }
+</style>
+<hr>
+<table>
+    <tr id="header">
+        <th scope="col">Sale id</th>
+        <th scope="col">Product Id</th>
+        <th scope="col">Name</th>
+        <th scope="col">Quantity Sold</th>
+        <th scope="col">Buying Price</th>
+        <th scope="col">Selling Price</th>
+        <th scope="col">Date Sold</th>
+        
+    </tr>
+    <tr>
+        {% for i in rows %}
+        <td scope="rows">{{i[0]}}</td>
+        <td >{{i[1]}}</td>
+        <td>{{i[2]}}</td>
+        <td>{{i[3]}}</td>
+        <td>{{i[4]}}</td>
+        <td>{{i[5]}}</td>
+        <td>{{i[6]}}</td>
+        <!-- <td><button type="button" class="btn btn-primary"><i class="fa-regular fa-cart-plus"></i></button></td>
+        <td><button type="button" class="btn btn-info"><i class="fa-regular fa-circle-info"></i></button></td>
+        <td><button type="button" class="btn btn-danger"><i class="fa-regular fa-file-pen"></i></button></td> -->
+      </tr>
+      
+      {% endfor%}
+
+{% endblock %}

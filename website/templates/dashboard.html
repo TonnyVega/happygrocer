@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block title %}Dashboard{% endblock %}
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</head>
+
+<style>
+  *{
+    margin:0;
+    padding: 0;
+  }
+  body {
+        padding: 0;
+        margin:0;
+        font-family:Verdana, Geneva, Tahoma, sans-serif;
+    }
+ 
+  .hover ul li{
+      display: inline-block;
+  }
+  .hover ul li a{
+      font-size: 40px;
+      color:black;
+      margin: 0px 10px;
+      display: inline-block;
+      width: 100px;
+      height: 100px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: gold;
+      transition: all .6s ease;
+    }
+
+    .hover ul li:hover a {
+      border-radius: 50%;
+      background: #000;
+      transform: rotate(360deg);
+    }
+    .card-body:hover{
+            background-color: #f5f5f5;
+            transform: scale(1.02);
+            box-shadow: 2px 2px 12px rgba(0,0,0,0.2),-1px -1px 8px rgba(0,0,0,0.2);
+        } 
+
+
+</style>
+
+
+
+
+{% block content%}
+<body>
+  <div class="col-xs-10 col-sm-6 col-md-6">
+    <div class="card card-style mb-2">
+      <div class="card-body">
+        <h2>User Dashboard </h2>
+    <br/> <br/>
+    <p>You are logged in!</p>
+    <br/><br/>
+    <strong>Name:</strong> {{ current_user.first_name }} <br/>
+    <strong>Id:</strong> {{ current_user.id }} <br/>
+    <strong>Name:</strong> {{ current_user.email }}
+        </div>
+      </div>
+    </div>
+  </div>
+     <br/>
+
+
+
+
+<!-- User Notes -->
+<h2 align="center">Notes</h2>
+<ul class="list-group list-group-flush" id="notes">
+  {% for note in user.notes %}
+  <li class="list-group-item">
+    {{ note.data }}
+    <button type="button" class="close" onClick="deleteNote({{ note.id }})">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </li>
+  {% endfor %}
+</ul>
+<form method="POST">
+  <textarea name="note" id="note" class="form-control"></textarea>
+  <br />
+  <div align="center">
+    <button type="submit" class="btn btn-primary">Add Note</button>
+  </div>
+</form>
+<br />
+<div class="hover">
+  <ul>
+    <li><a href="/products"><ion-icon name="phone-portrait-outline"></ion-icon></a></li>
+    <li><a href="/sales"><ion-icon name="card-outline"></ion-icon></a></li>
+    <li><a href="/insights"><ion-icon name="contrast-outline"></ion-icon></a></li>
+    <li><a href="/stock"><ion-icon name="laptop-outline"></ion-icon></a></li>
+    
+  </ul>
+</div>
+<script
+type="text/javascript"
+src="{{ url_for('static', filename='index.js') }}"
+></script>
+</body>
+{% endblock %}
+</html>

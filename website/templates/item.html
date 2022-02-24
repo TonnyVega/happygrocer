@@ -1,0 +1,232 @@
+{% extends 'base.html' %}
+{% block title %} {{item}} {% endblock %}
+{% block content%}
+
+
+<style>
+    body {
+        padding: 0;
+        margin:0;
+        font-family:Verdana, Geneva, Tahoma, sans-serif;
+    }
+
+    table{
+        position:center;
+        left: 50%;
+        top:50%;
+        transform: translate (-50%,-50%);
+        border-collapse: collapse;
+        width:800px;
+        height:200px;
+        border: 1px solid #bdc3c7;
+        box-shadow: 2px 2px 12px rgba(0,0,0,0.2),-1px -1px 8px rgba(0,0,0,0.2);
+    }
+    tr{
+        transition: all .2s ease-in;
+        cursor: pointer;
+    }
+
+    th,td{
+        padding: 12px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+    td{
+        background-color: cornsilk;
+    }
+
+    #header{
+        background-color: #16a085;
+        color: #fff;
+    }
+    h1{
+    font-weight: 600;
+    text-align: center;
+    background-color: #16a085;
+    color:#fff;
+    padding: 10px 0px;
+
+    }
+    
+    @media only screen and (max-width: 768px){
+        table{
+            width: 90%;
+        }
+    }
+</style>
+<hr>
+<table>
+    <tr id="header">
+        <th scope="col">Product Id</th>
+        <th scope="col">Name</th>
+        <th scope="col">Category</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">Buying Price</th>
+        <th scope="col">Selling Price</th>
+        <th scope="col">Make sale</th>
+        <th scope="col">edit</th>
+        
+    </tr>
+    <tr>
+        {% for i in rows %}
+        <td scope="rows">{{i[0]}}</td>
+        <td >{{i[1]}}</td>
+        <td>{{i[2]}}</td>
+        <td>{{i[3]}}</td>
+        <td>{{i[4]}}</td>
+        <td>{{i[5]}}</td>
+        <td><!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+              sell Item
+            </button>
+            
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Select amount</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <form action="/inventory/{{i[0]}}" method="POST">
+                        <div class="mb-3">
+                            <input type="hidden" value="{{i[0]}}" name="p_id">
+                        </div>
+                        <div class="mb-3">
+                            <input type="hidden" value="{{i[1]}}" name="name">
+                        </div>
+                        <div class="mb-3">
+                            <label for=" " class="form-label">Quantity</label>
+                            <input type="number" class="form-control" name="quantity"
+                                id="quantity">
+                        </div>
+                        <div class="mb-3">
+                          <input type="hidden" value="{{i[4]}}" name="b_price">
+                      </div>
+                        <div class="mb-3">
+                          <input type="hidden" value="{{i[5]}}" name="s_price">
+                          </div>
+                          
+                        <div>
+                            <button type="submit" class="btn btn-dark"
+                                data-bs-dismiss="modal">Submit</button>
+                        </div>
+                    </form>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td>
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal1">
+             <i class="fa fa-pencil-square-o" aria-hidden="true">edit</i>
+          </button>
+ 
+          <!-- Modal -->
+         <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+         <div class="modal-dialog">
+         <div class="modal-content">
+         <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">edit</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+              <form action="/inventory" method="POST">
+ 
+               <div class="mb-3">
+                 <label class="form-label" >product_id</label>
+                 <input type="number" value="{{i[0]}}" class="form-control" name="p_id"
+                     id="p_id">
+                 </div>
+                 <div class="mb-3">
+                 <label class="form-label">product_name</label>
+                 <input type="text" class="form-control" name="name"
+                     id="name">
+                 </div>
+                 <div class="mb-3">
+                  <label class="form-label">category</label>
+                  <input type="text" class="form-control" name="category"
+                      id="category">
+                  </div>
+                 <div class="mb-3">
+                   <label class="form-label">quantity</label>
+                   <input type="number" class="form-control" name="quantity"
+                               id="quantity">
+                   </div>
+                 
+                 <div class="mb-3">
+                     <label class="form-label">buying_price</label>
+                     <input type="number" class="form-control" name="b_price"
+                           id="b_price">
+                 </div>
+                 
+                 <div class="mb-3">
+                 <label class="form-label">selling_price</label>
+                 <input type="number" class="form-control" name="s_price"
+                     id="s_price">
+                 </div>
+                 
+                      
+                 
+                             
+                 <div>
+                 <button type="submit" class="btn btn-dark"
+                 data-bs-dismiss="modal">Submit</button>
+                 </div>
+                 </form>
+                  </div>
+               <div class="modal-footer">
+                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                 <button type="button" class="btn btn-primary">Save changes</button>
+               </div>
+         </div>
+         </div>
+         </div>
+       </td>
+      </tr>
+{% endfor %}
+      <hr/>
+
+      <div class="col-xs-10 col-sm-6 col-md-6">
+        <div class="card card-style mb-2">
+          <div class="card-body">
+            <div class="chart-container" style="position:relative;">
+              <canvas id="item_data"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    {% block javascript %}
+    <script>
+       var ctx = document.getElementById("item_data").getContext("2d");
+        var lineChart = new Chart(ctx, {
+            type: "line",
+            data: {
+                labels: {{ labels | safe }},
+                datasets: [
+                    {
+                        label: "item_data",
+                        data: {{ values | safe }},
+                        backgroundColor: {{ color | safe}}
+                    }
+                ]
+            },
+            options:{
+                responsive: true
+            }
+        })
+      </script>
+    {% endblock %}
+      
+
+<script src="http://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/Char.min.js" ></script>
+  
+{% endblock %}
