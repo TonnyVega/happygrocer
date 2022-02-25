@@ -6,11 +6,11 @@ from werkzeug.utils import redirect
 
 tables = Blueprint('tables',__name__)
 
-conn = psycopg2.connect(user='tdhbjbpwtrjlvv',
-                        password='7f959ad6649dd32a65c45df4237f70604990e0e9d8f82ba16d643074de0a1b3c',
-                        host='ec2-3-227-195-74.compute-1.amazonaws.com',
+conn = psycopg2.connect(user='ngzkxtvrenrtan',
+                        password='c9cc3c2926841a1f46ec1d3da38e8367695e551ba6f170ce059bc71722b4ce2e',
+                        host='ec2-52-208-145-55.eu-west-1.compute.amazonaws.com',
                         port='5432',
-                        database='dah20ug77pnqp4')
+                        database='dd3c87sbmlcf9u')
 
 cur = conn.cursor()
 cur.execute("CREATE TABLE IF NOT EXISTS inventory(p_id SERIAL PRIMARY KEY,name VARCHAR(255),category VARCHAR(255),quantity INT NOT NULL,b_price INT NOT NULL,s_price INT NOT NULL, date_purchased TIMESTAMP DEFAULT NOW())")
