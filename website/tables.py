@@ -6,7 +6,16 @@ from werkzeug.utils import redirect
 
 tables = Blueprint('tables',__name__)
 
-conn = psycopg2.connect("dbname='grocery' user='postgres' port=5433 host='localhost' password='tony' ")
+conn = psycopg2.connect(user='duznueqqrqmjbz',
+                        password='9ca81447776c7aa478f31903efc8cab22a2c6030fec4fa69fd1e1834b419dc08',
+                        host='ec2-52-208-221-89.eu-west-1.compute.amazonaws.com',
+                        port='5432',
+                        database='d9mjn4u9l9pu5b')
+
+cur = conn.cursor()
+cur.execute("CREATE TABLE IF NOT EXISTS inventory(p_id SERIAL PRIMARY KEY,name VARCHAR(255),category VARCHAR(255),quantity INT NOT NULL,b_price INT NOT NULL,s_price INT NOT NULL, date_purchased TIMESTAMP DEFAULT NOW())")
+cur.execute("CREATE TABLE IF NOT EXISTS sales(s_id SERIAL PRIMARY KEY ,p_id INT,name VARCHAR(100),sold INT,b_pice INT,s_price INT,sold_at DATE NOT NULL DEFAULT NOW())")
+
 
 
 @tables.route('/inventory', methods=['GET','POST'])
