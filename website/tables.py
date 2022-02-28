@@ -40,6 +40,7 @@ def inventory():
 
 
 @tables.route('/inventory/<int:x>',methods=['GET','POST'])
+@login_required
 def item(x):
     
     cur=conn.cursor()
@@ -79,6 +80,7 @@ def item(x):
 
 
 @tables.route('/sales', methods=['GET','POST'])
+@login_required
 def view_item():
     cur=conn.cursor()
     cur.execute("""SELECT s_id,p_id,name,sold,b_price,s_price, sold_at FROM sales""")
@@ -87,6 +89,7 @@ def view_item():
 
 
 @tables.route('/sales/<int:x>')
+@login_required
 def view_sales(x):
     cur=conn.cursor()
     cur.execute("""SELECT s_id,p_id,name,sold,b_price,s_price, sold_at FROM sales WHERE p_id=%(p_id)s""",{"p_id":x})
