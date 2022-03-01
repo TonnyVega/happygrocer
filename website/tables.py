@@ -12,9 +12,9 @@ conn = psycopg2.connect(user='pqlrmozazmvbjr',
                         port='5432',
                         database='de5fq3feodichn')
 
-cur = conn.cursor()
-cur.execute("CREATE TABLE IF NOT EXISTS inventory(p_id SERIAL PRIMARY KEY,name VARCHAR(255),category VARCHAR(255),quantity INT NOT NULL,b_price INT NOT NULL,s_price INT NOT NULL, date_purchased TIMESTAMP DEFAULT NOW())")
-cur.execute("CREATE TABLE IF NOT EXISTS sales(s_id SERIAL PRIMARY KEY ,p_id INT,name VARCHAR(100),sold INT,b_pice INT,s_price INT,sold_at DATE NOT NULL DEFAULT NOW())")
+# cur = conn.cursor()
+# cur.execute("CREATE TABLE IF NOT EXISTS inventory(p_id SERIAL PRIMARY KEY,name VARCHAR(255),category VARCHAR(255),quantity INT NOT NULL,b_price INT NOT NULL,s_price INT NOT NULL, date_purchased TIMESTAMP DEFAULT NOW())")
+# cur.execute("CREATE TABLE IF NOT EXISTS sales(s_id SERIAL PRIMARY KEY ,p_id INT,name VARCHAR(100),sold INT,b_pice INT,s_price INT,sold_at DATE NOT NULL DEFAULT NOW())")
 
 
 
