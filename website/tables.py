@@ -14,7 +14,7 @@ conn = psycopg2.connect(user='pqlrmozazmvbjr',
 
 cur = conn.cursor()
 cur.execute("CREATE TABLE IF NOT EXISTS inventory(p_id SERIAL PRIMARY KEY,name VARCHAR(255),category VARCHAR(255),quantity INT NOT NULL,b_price INT NOT NULL,s_price INT NOT NULL, date_purchased TIMESTAMP DEFAULT NOW())")
-cur.execute("CREATE TABLE IF NOT EXISTS sales(s_id SERIAL PRIMARY KEY ,p_id INT,name VARCHAR(100),sold INT,b_pice INT,s_price INT,sold_at DATE NOT NULL DEFAULT NOW())")
+cur.execute("CREATE TABLE IF NOT EXISTS sales(s_id SERIAL PRIMARY KEY ,p_id INT,name VARCHAR(100),sold INT,b_price INT,s_price INT,sold_at DATE NOT NULL DEFAULT NOW())")
 
 
 
@@ -34,7 +34,7 @@ def inventory():
         return redirect('/inventory')
     else:
         cur=conn.cursor()
-        cur.execute(""" SELECT p_id,name,category, quantity,b_price, s_price, date_purchase FROM inventory""")
+        cur.execute(""" SELECT p_id,name,category, quantity,b_price, s_price, date_purchased FROM inventory""")
         rows=cur.fetchall()
         return render_template('inventory.html',user=current_user, rows=rows)
 
