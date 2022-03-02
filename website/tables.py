@@ -34,7 +34,7 @@ def inventory():
         return redirect('/inventory')
     else:
         cur=conn.cursor()
-        cur.execute(""" SELECT * FROM inventory""")
+        cur.execute(""" SELECT p_id,name,category, quantity,b_price, s_price, date_purchase FROM inventory""")
         rows=cur.fetchall()
         return render_template('inventory.html',user=current_user, rows=rows)
 
