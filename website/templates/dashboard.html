@@ -76,26 +76,7 @@
 
 
 
-<!-- User Notes -->
-<h2 align="center">Notes</h2>
-<ul class="list-group list-group-flush" id="notes">
-  {% for note in user.notes %}
-  <li class="list-group-item">
-    {{ note.data }}
-    <button type="button" class="close" onClick="deleteNote({{ note.id }})">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </li>
-  {% endfor %}
-</ul>
-<form method="POST">
-  <textarea name="note" id="note" class="form-control"></textarea>
-  <br />
-  <div align="center">
-    <button type="submit" class="btn btn-primary">Add Note</button>
-  </div>
-</form>
-<br />
+
 <div class="hover">
   <ul>
     <li><a href="/products"><ion-icon name="phone-portrait-outline"></ion-icon></a></li>
