@@ -49,7 +49,7 @@
     <div class="cart-items-container">
         <div class="cart-item">
             <span class="fas fa-times"></span>
-            <img src="{{ url_for('static', filename='images/spice.jpg') }}" alt=""> 
+            <img src="{{ url_for('static', filename='images/logos/inventory.png') }}" alt=""> 
             <div class="content">
                 <h3>inventory</h3>
                 <a href="/inventory" class="btn">check</a>
@@ -57,7 +57,7 @@
         </div>
         <div class="cart-item">
             <span class="fas fa-times"></span>
-            <img src="{{ url_for('static', filename='images/chicken1.jpg') }}" alt="">
+            <img src="{{ url_for('static', filename='images/logos/server.png') }}" alt="">
             <div class="content">
                 <h3>Sales</h3>
                 <a href="/sales" class="btn">check</a>
@@ -65,20 +65,30 @@
         </div>
         <div class="cart-item">
             <span class="fas fa-times"></span>
-            <img src="{{ url_for('static', filename='images/bbq.jpg') }}" alt="">
+            <img src="{{ url_for('static', filename='images/logos/docs.png) }}" alt="">
             <div class="content">
                 <h3>Dashboard</h3>
                 <a href="/dashboard" class="btn">check</a>              
             </div>
         </div>
+        {% if current_user.is_authenticated %}
         <div class="cart-item">
             <span class="fas fa-times"></span>
-            <img src="{{ url_for('static', filename='images/users/user3.png') }}" alt="">
             <div class="content">
                 <h3></h3>
                 <a href="/logout" class="btn">logout</a>
             </div>
         </div>
+        {% else %}
+        <div class="cart-item">
+            <span class="fas fa-times"></span>
+            <div class="content">
+                <h3></h3>
+                <a href="/login" class="btn">login</a>
+            </div>
+        </div>
+        {% endif %}
+       
         
     </div>
 
@@ -109,7 +119,7 @@
     <div class="row">
 
         <div class="image">
-            <img src="{{ url_for('static', filename='images/pork.jpg') }}" alt="">
+            <img src="{{ url_for('static', filename= 'images/pork.jpg') }}" alt="">
         </div>
 
         <div class="content">
