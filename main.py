@@ -10,4 +10,3 @@ if __name__ == "__main__":
 # with this I can now add a resource management system for a small or industrial grocery store.
 # I will continue updating. 
 # key notes. *admin page. * user page with profile updates. * user orders and admin dispatches. 
-
