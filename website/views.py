@@ -30,7 +30,7 @@ def note():
             db.session.commit()
             flash('Note added!', category='success')
 
-    return render_template("note.html", user=current_user)
+    return render_template("dashboard.html", user=current_user)
 
 
 @views.route('/delete-note', methods=['POST'])
