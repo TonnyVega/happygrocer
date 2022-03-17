@@ -63,10 +63,16 @@
         <h2>User Dashboard </h2>
     <br/> <br/>
     <p>You are logged in!</p>
+    {% if current_user.id == 1 %}
+    <strong> Welcome Admin </strong>
+    {% else %}
+    {% endif %}
     <br/><br/>
+
     <strong>Name:</strong> {{ current_user.first_name }} <br/>
     <strong>Id:</strong> {{ current_user.id }} <br/>
     <strong>Email:</strong> {{ current_user.email }}
+
         </div>
       </div>
     </div>
